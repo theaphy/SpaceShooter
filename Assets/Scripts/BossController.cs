@@ -1,28 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class BossController : MonoBehaviour {
 
 	public Rigidbody bossy;
+	public int shotCount;
+	public GameObject explosion;
+	public GameObject littleExplosion;
+
+	private bool restart;
+	private bool winner;
+
+	public Text restartText;
+	public Text winnerText;
 
 	// Use this for initialization
 	void Start () {
-		
+		restart = false;
+		restartText.text = "";
+		winnerText.text = "";
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (restart) {
+			if (Input.GetKeyDown (KeyCode.R)) {
+				SceneManager.LoadScene("Main");
+			}
+		}
 	}
 
 	public void StartFlight() {
-//		InvokeRepeating("MoveBoss", 0.0f, 1.2f);
-	}
-
-	public void BossDead () {
-		
+		InvokeRepeating("MoveBoss", 0.0f, 1.2f);
 	}
 
 	public void MoveBoss () {
@@ -47,7 +60,25 @@ public class BossController : MonoBehaviour {
 
 	}
 
+	void OnTriggerEnter (Collider other) {
+		if (other.tag == "Bolt" && shotCount < 3) {
+			
+			Instantiate(littleExplosion, other.transform.position, other.transform.rotation);
+			shotCount++;
+
+		} 
+		if (other.tag == "Bolt" && shotCount == 3) {
+			Instantiate(explosion, other.transform.position, other.transform.rotation);
+			Destroy (this);
+			winnerText.text = "You Won!";
+			restart = true;
+			restartText.text = "Press 'R' for Restart";
+
+		}
+	}
+
 	void FixedUpdate () {
+
 		
 	}
 }

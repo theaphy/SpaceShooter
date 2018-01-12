@@ -11,4 +11,5 @@ public class RandomRotator : MonoBehaviour {
 		rb = GetComponent<Rigidbody>();
 		rb.angularVelocity = Random.insideUnitSphere * tumble;
 	}
+
 }

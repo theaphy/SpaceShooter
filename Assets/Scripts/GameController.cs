@@ -63,12 +63,13 @@ public class GameController : MonoBehaviour {
 				Instantiate (hazard, spawnPosition, spawnRotation); 
 				yield return new WaitForSeconds (spawnWait);
 			}
-			if (score >= 0) { //should be 50
+
+			yield return new WaitForSeconds (waveWait);
+
+			if (score >= 50) { //should be 50
 				hazardCount = 0; // turns off asteroids
 				bossController.StartFlight ();
 			}
-
-			yield return new WaitForSeconds (waveWait);
 
 			if (gameOver) {
 				restartText.text = "Press 'R' for Restart";

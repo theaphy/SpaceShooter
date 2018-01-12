@@ -31,6 +31,7 @@ public class TurretRotator : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
+		
 		turret.rotation = Quaternion.LookRotation (player.transform.position - shotSpawn.position);
 		if (gameController.hazardCount == 0) {	
 			if (Time.time % 2 == 0) {
