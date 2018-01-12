@@ -7,9 +7,6 @@ public class BossController : MonoBehaviour {
 
 	public Rigidbody bossy;
 
-	public GameObject shot;
-	public Transform shotSpawn;
-
 	// Use this for initialization
 	void Start () {
 		
@@ -21,7 +18,7 @@ public class BossController : MonoBehaviour {
 	}
 
 	public void StartFlight() {
-		InvokeRepeating("MoveBoss", 0.0f, 1.2f);
+//		InvokeRepeating("MoveBoss", 0.0f, 1.2f);
 	}
 
 	public void BossDead () {
@@ -42,11 +39,11 @@ public class BossController : MonoBehaviour {
 		bossy.position = new Vector3 (
 			Mathf.Clamp (bossy.position.x, -6, 6),
 			0.0f,
-			Mathf.Clamp (bossy.position.z, -13, 13 )
+			Mathf.Clamp (bossy.position.z, -13, 12 )
 		);
-		Debug.Log (bossy.position);
+//		Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
 
-		Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+
 
 	}
 

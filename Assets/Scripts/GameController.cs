@@ -63,8 +63,8 @@ public class GameController : MonoBehaviour {
 				Instantiate (hazard, spawnPosition, spawnRotation); 
 				yield return new WaitForSeconds (spawnWait);
 			}
-			if (score >= 0) {
-				hazardCount = 0;
+			if (score >= 0) { //should be 50
+				hazardCount = 0; // turns off asteroids
 				bossController.StartFlight ();
 			}
 
